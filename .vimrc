@@ -1,4 +1,8 @@
 set nocompatible              " be iMproved, required
+set exrc
+set encoding=utf-8
+
+
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
@@ -14,6 +18,8 @@ Plugin 'git@github.com:kien/ctrlp.vim.git'
 Plugin 'git@github.com:rking/ag.vim.git'
 Plugin 'git@github.com:moll/vim-node.git'
 Plugin 'git@github.com:ajh17/VimCompletesMe.git'
+Plugin 'git@github.com:Valloric/YouCompleteMe.git'
+Plugin 'lyuts/vim-rtags'
 Plugin 'leafgarland/typescript-vim'
 
 " All of your Plugins must be added before the following line
@@ -30,6 +36,10 @@ set colorcolumn=80
 set autochdir " sets the cwd to whatever file is in view.  This allows better
               " omni completion.
 autocmd BufWritePre * %s/\s\+$//e
+
+" You Complete Me
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
 
 " Let definitions
 let mapleader= " "
@@ -75,6 +85,4 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-
 
