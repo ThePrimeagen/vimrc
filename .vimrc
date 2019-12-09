@@ -21,6 +21,8 @@ Plugin 'git@github.com:moll/vim-node.git'
 Plugin 'morhetz/gruvbox'
 Plugin 'rust-lang/rust.vim'
 Plugin 'racer-rust/vim-racer'
+Plugin 'fatih/vim-go'
+Plugin 'hotoo/jsgf.vim'
 Plugin 'rcticicestudio/nord-vim'
 Plugin 'git@github.com:ajh17/VimCompletesMe.git'
 Plugin 'git@github.com:Valloric/YouCompleteMe.git'
@@ -34,6 +36,8 @@ filetype plugin indent on    " required
 
 " Set of basic vim options
 colorscheme gruvbox
+set noerrorbells
+set vb t_vb=
 set background=dark
 set tabstop=4
 set shiftwidth=4
@@ -50,10 +54,20 @@ set hidden
 let g:racer_cmd = "/home/mpaulson/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 
+" Go
+let g:go_fmt_command = "goimports"
+
 " You Complete Me
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
 let g:ycm_max_diagnostics_to_display=0
+" DEBUG STUFFS
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+let g:ycm_warning_symbol = '.'
+let g:ycm_error_symbol = '..'
+let g:ycm_server_use_vim_stdout = 1
+" DEBUG STUFFS
 
 " Let definitions
 let mapleader= " "
@@ -83,16 +97,16 @@ map <leader>k :wincmd k<CR>
 map <leader>l :wincmd l<CR>
 nmap <leader>pf :CtrlP<CR>
 nmap <leader>ps :Ag<SPACE>
+nnoremap <Leader>gd :GoDef<Enter>
 nnoremap <Leader>pt :NERDTreeToggle<Enter>
 nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
 nnoremap <silent> <Leader>vr :vertical resize 30<CR>
 nnoremap <silent> <Leader>r+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>r- :vertical resize -5<CR>
+nnoremap <silent> <Leader>;; iif err != nil { <esc>o} <esc>:w<CR>
 nmap <leader><leader> V
 vmap <Leader>y "+y
 vmap <Leader>= <C-W><C-=>
-
-
 
 " Autocompletion
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -104,4 +118,6 @@ au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+autocmd BufEnter *.tsx set filetype=typescript
+
 
