@@ -22,6 +22,7 @@ Plugin 'morhetz/gruvbox'
 Plugin 'rust-lang/rust.vim'
 Plugin 'racer-rust/vim-racer'
 Plugin 'fatih/vim-go'
+Plugin 'vim-utils/vim-man'
 Plugin 'hotoo/jsgf.vim'
 Plugin 'rcticicestudio/nord-vim'
 Plugin 'git@github.com:ajh17/VimCompletesMe.git'
@@ -42,6 +43,7 @@ set background=dark
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set relativenumber
 set nu
 set nowrap
 set colorcolumn=80
