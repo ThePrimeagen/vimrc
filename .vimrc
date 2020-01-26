@@ -3,6 +3,7 @@ set exrc
 set noswapfile
 set nobackup
 set encoding=utf-8
+set clipboard=unnamedplus
 
 filetype off                  " required
 
@@ -15,21 +16,23 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'rking/ag.vim'
-Plugin 'moll/vim-node'
+Plugin 'git@github.com:kien/ctrlp.vim.git'
+Plugin 'git@github.com:rking/ag.vim.git'
+Plugin 'git@github.com:moll/vim-node.git'
 Plugin 'morhetz/gruvbox'
 Plugin 'rust-lang/rust.vim'
 Plugin 'racer-rust/vim-racer'
 Plugin 'fatih/vim-go'
 Plugin 'vim-utils/vim-man'
 Plugin 'hotoo/jsgf.vim'
-Plugin 'arcticicestudio/nord-vim'
-Plugin 'ajh17/VimCompletesMe'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'git@github.com:ajh17/VimCompletesMe.git'
+Plugin 'git@github.com:Valloric/YouCompleteMe.git'
 Plugin 'lyuts/vim-rtags'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'jacoborus/tender.vim'
+Plugin 'tomasr/molokai'
+Plugin 'artur-shaik/vim-javacomplete2'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -43,7 +46,6 @@ set background=dark
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set relativenumber
 set nu
 set nowrap
 set colorcolumn=80
@@ -55,6 +57,9 @@ autocmd BufWritePre * %s/\s\+$//e
 set hidden
 let g:racer_cmd = "/home/mpaulson/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
+
+" nerdtree
+let NERDTreeMinimalUI = 1
 
 " Go
 let g:go_fmt_command = "goimports"
@@ -109,6 +114,10 @@ nnoremap <silent> <Leader>;; iif err != nil { <esc>o} <esc>:w<CR>
 nmap <leader><leader> V
 vmap <Leader>y "+y
 vmap <Leader>= <C-W><C-=>
+
+" The best part.
+nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
+nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
 
 " Autocompletion
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
