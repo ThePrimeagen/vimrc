@@ -4,6 +4,7 @@ set noswapfile
 set nobackup
 set encoding=utf-8
 set clipboard=unnamedplus
+set incsearch
 
 filetype off                  " required
 
