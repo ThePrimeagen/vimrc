@@ -34,6 +34,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'jacoborus/tender.vim'
 Plugin 'tomasr/molokai'
 Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'vim-airline/vim-airline'
+Plugin 'mbbill/undotree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
