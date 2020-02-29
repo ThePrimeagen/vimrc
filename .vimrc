@@ -15,6 +15,7 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
+Plugin 'jremmen/vim-ripgrep'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'git@github.com:kien/ctrlp.vim.git'
@@ -46,6 +47,8 @@ colorscheme gruvbox
 set noerrorbells
 set vb t_vb=
 set background=dark
+set undodir=~/.vim/undodir
+set undofile
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -84,34 +87,29 @@ let mapleader= " "
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ag_working_path_mode="r"
 
-" ag items.  I need the silent ag.
-if executable('ag')
-  " Use ag over grep "
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore "
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache "
-  let g:ctrlp_use_caching = 0
-endif
+" bye bye ag, hello rg
+" ---- RG ----
+" Really fast greppy
+let g:rg_command = 'rg --vimgrep -S'
 
 " For simple sizing of splits.
 map - <C-W>-
 map + <C-W>+
 
 " Remaps.  This is where the magic of vim happens
-map <leader>h :wincmd h<CR>
-map <leader>j :wincmd j<CR>
-map <leader>k :wincmd k<CR>
-map <leader>l :wincmd l<CR>
-map <silent>; :
+nmap <leader>h :wincmd h<CR>
+nmap <leader>j :wincmd j<CR>
+nmap <leader>k :wincmd k<CR>
+nmap <leader>l :wincmd l<CR>
+nmap <leader>u :UndotreeShow<CR>
+nmap <silent>; :
 nmap <leader>pf :CtrlP<CR>
 nnoremap <Leader>gd :GoDef<Enter>
 nnoremap <Leader>pt :NERDTreeToggle<Enter>
 nnoremap <silent> <Leader>pv :NERDTreeFind<CR>
 nnoremap <silent> <Leader>vr :vertical resize 30<CR>
 nnoremap <silent> <Leader>r+ :vertical resize +5<CR>
+nnoremap <silent> <Leader>r- :vertical resize -5<CR>
 nnoremap <silent> <Leader>r- :vertical resize -5<CR>
 nnoremap <silent> <Leader>;; iif err != nil { <esc>o} <esc>:w<CR>
 nmap <leader><leader> V
@@ -123,12 +121,12 @@ vmap <Leader>= <C-W><C-=>
 nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
 nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
 
-" AG
+" RG
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Ag<SPACE>
-nnoremap <Leader>ps :Ag<SPACE>
+command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Rg<SPACE>
+nnoremap <Leader>ps :Rg<SPACE>
 
 " Autocompletion
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
