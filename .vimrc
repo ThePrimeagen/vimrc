@@ -82,15 +82,22 @@ let g:ycm_error_symbol = '..'
 let g:ycm_server_use_vim_stdout = 1
 " DEBUG STUFFS
 
+" ag items.  I need the silent ag.
+if executable('ag')
+  " Use ag over grep "
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore "
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache "
+  let g:ctrlp_use_caching = 0
+endif
+
 " Let definitions
 let mapleader= " "
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ag_working_path_mode="r"
-
-" bye bye ag, hello rg
-" ---- RG ----
-" Really fast greppy
-let g:rg_command = 'rg --vimgrep -S'
 
 " For simple sizing of splits.
 map - <C-W>-
@@ -124,9 +131,9 @@ nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
 " RG
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-command -nargs=+ -complete=file -bar Rg silent! grep! <args>|cwindow|redraw!
-nnoremap \ :Rg<SPACE>
-nnoremap <Leader>ps :Rg<SPACE>
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+nnoremap \ :Ag<SPACE>
+nnoremap <Leader>ps :Ag<SPACE>
 
 " Autocompletion
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
