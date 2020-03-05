@@ -5,6 +5,7 @@ set nobackup
 set encoding=utf-8
 set clipboard=unnamedplus
 set incsearch
+set noshowmode
 
 filetype off                  " required
 
