@@ -1,4 +1,4 @@
-GO TO : [DotFiles](https://github.com/erkrnt/awesome-streamerrc/tree/master/ThePrimeagen)
+GO TO : [DotFiles](https://github.com/ThePrimeagen/.dotfiles)
 # DEPRECATED
 # DEPRECATED
 # DEPRECATED
